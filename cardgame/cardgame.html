@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl=PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Test</title>
+</head>
+<body>
+    <header>
+        <h1>
+            Fiszki | Cards
+        </h1>
+    </header>
+    <main>
+        <h2 id="commute_h2">
+            Click the card to reveal english translation. <br> If you want go back to polish translation click out of the card.
+        </h2>
+        <div class="card_area">
+            <div class="card">
+                <div class="front_card">
+                    <span id="front_text"></span> <!-- TYLKO PL -->
+                </div>
+                <div class="back_card">
+                    <span id="back_text"></span> <!-- TRANSLACJA -->
+                </div>
+            </div>
+        </div>
+        <section id="options_card">
+            <button onclick="previous()">
+                Back
+            </button>
+            <button onclick="next()">
+                Next
+            </button>
+        </section>
+    </main>
+    <script src="card_game.js"></script>
+</body>
+</html>
