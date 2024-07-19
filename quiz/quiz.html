@@ -13,57 +13,108 @@
             </h1>
         </header>
         <main>
-            <section class="panel_area">
-                <div class="panel">
-                    <h3>
-                        Pytanie 1/19
-                        <!-- PHP -->
+            <section class="sections-area center">
+                <section class="panel center" id="task1">
+                        <!-- 1. Zaznacz wszystkie powitania -->
+                    <h4 class="task-count">Question 1 of 4 </h4>
+                    <h3 class="task-header">
+                        Select all greetings
                     </h3>
-
-                    <hr>
-
-                    <div class="question_container">
-                        <h4>
-                            What is <em>goodmorning</em> in polish?
-                        </h4>
-                        <!-- PHP -->
+                    <div class="options-area">
+                        <div>
+                            <input type="checkbox" name="option1-1" class="options-check">
+                            <label for="option1">option1</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="option2-1" class="options-check">
+                            <label for="option2">option2</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="option3-1" class="options-check">
+                            <label for="option3">option3</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="option4-1" class="options-check">
+                            <label for="option4">option4</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="option5-1" class="options-check">
+                            <label for="option5">option5</label>
+                        </div>
                     </div>
-                    <form method="post">
-                        <div class="options_answers">
-                            <div class="options">
-                                <div class="quiz_option_container">
-                                    <input type="radio" name="option" class="quiz_option" value="dobranoc">
-                                    <label for="dobranoc"> Dobranoc </label>
-                                </div>
-                                <div class="quiz_option_container">
-                                    <input type="radio" name="option" class="quiz_option" value="whats ligma">
-                                    <label for="whats ligma"> Dzień dobry </label>
-                                </div>
-                                <div class="quiz_option_container">
-                                    <input type="radio" name="option" class="quiz_option" value="ligmastic">
-                                    <label for="ligmastic"> Witaj </label>
-                                </div>
-                                <!-- PHP -->
+                    <button class="next-btn" onclick="next()">Next</button>
+                </section>
+                <section class="panel center" id="task2">
+                        <!-- 4. Które słowo nie jest odmianą słowa "jeść"? -->
+                    <h4 class="task-count">Question 2 of 4 </h4>
+                    <h3 class="task-header">
+                        What it isn't polish translation to <em>eat</em>
+                    </h3>
+                    <div class="options-area">
+                        <div>
+                            <input type="radio" name="option1-2" class="options-radio">
+                            <label for="option1-2">option1</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="option2-2" class="options-radio">
+                            <label for="option2-2">option2</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="option3-2" class="options-radio">
+                            <label for="option3-2">option3</label>
+                        </div>
+                    </div>
+                    <button class="next-btn" onclick="next()">Next</button>
+                </section>
+                <section class="panel center" id="task3">
+                        <!-- 3. Dopasuje polskie tłumaczenia (Drag&Drop) -->
+                        <h4 class="task-count">Question 3 of 4 </h4>
+                        <h3 class="task-header">
+                        Join polish translation to english 
+                    </h3>
+                    <div class="dad">
+                        <div class="dragged-dad">
+                            <div class="option-dad">
+                                option1
                             </div>
-                            <div class="answer_icon">
-                                <div>
-                                    X
-                                </div>
-                                <div>
-                                    V
-                                </div>
-                                <div>
-                                    X
-                                </div>
-                                <!-- PHP -->
+                            <div class="option-dad">
+                                option2
+                            </div>
+                            <div class="option-dad">
+                                option3
+                            </div>
+                            <div class="option-dad">
+                                option4
                             </div>
                         </div>
-                        <div class="panel_submit">
-                            <button type="submit" id="submit"> Answer </button>
+                        <div class="dropped-dad">
+                            <div class="dropped" id="first">
+                                <div class="area-drod-dad"></div> is text1
+                            </div>
+                            <div class="dropped" id="second">
+                                <div class="area-drod-dad"></div> is text2
+                            </div>
+                            <div class="dropped" id="third">
+                                <div class="area-drod-dad"></div> is text3
+                            </div>
+                            <div class="dropped" id="fourth">
+                                <div class="area-drod-dad"></div> is text4
+                            </div>
                         </div>
-                        <!-- PHP Form Checking-->
-                    </form>
-                </div>
+                    </div>
+                    <button class="next-btn" onclick="next()">Next</button>
+                </section>
+                <section class="panel center" id="task4">
+                        <!--2. Jak powiedzieć po polsku "I drink water"?-->
+                        <h4 class="task-count">Question 4 of 4 </h4>
+                        <h3 class="task-header">
+                        Join polish translation to english
+                    </h3>
+                    <div class="input-area center">
+                        <input type="text" name="input" placeholder="Answer..." class="text-input">
+                    </div>
+                    <button class="next-btn" onclick="next()">Next</button>
+                </section>
             </section>
         </main>
     </body>
