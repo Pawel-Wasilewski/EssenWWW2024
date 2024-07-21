@@ -67,7 +67,7 @@ input:focus {
     outline: none;
 }
 .options-area {
-    width: 50%;
+    width: 55.5%;
     margin-bottom: 1em;
 }
 .option-container {
@@ -152,6 +152,7 @@ input:focus {
     border: 1px solid #5a5a5a;
     width: 6em;
     height: 3em;
+    margin: 1em;
     border-radius: 12px;
     justify-content: center;
 }
@@ -174,7 +175,7 @@ input:focus {
     width: 6em;
     height: 3em;
     border-radius: 12px;
-    margin-right: 0.5em;
+    margin-right: 0.25em;
     border: 1px solid #5a5a5a;
 }
 .option-dad.dragging {
@@ -182,7 +183,9 @@ input:focus {
     position: absolute;
     z-index: 1000;
 }
-
+.hidden {
+    display: none;
+}
 @font-face {
     font-family: Grotesk;
     src: url(../Space_Grotesk/SpaceGrotesk-VariableFont_wght.ttf);
