@@ -17,9 +17,13 @@ h1 {
     align-items: center;
     text-align: center;
 }
+.horizontal-center {
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
 .panel {
     width: 80%;
-    height: 400px;
     box-shadow: 1px 1px 10px 4px silver;
     border-radius: 12px;
     padding: 32px;
@@ -62,6 +66,123 @@ h1 {
 input:focus {
     outline: none;
 }
+.options-area {
+    width: 50%;
+    margin-bottom: 1em;
+}
+.option-container {
+    color: #e2e2e2;
+    font-weight: bolder;
+    padding: 8px 16px 8px 8px;
+    margin: 5px;
+    border-radius: 3em;
+    background: rgb(12,0,142);
+    background: linear-gradient(90deg, rgba(12,0,142,1) 31%, rgba(29,0,255,1) 100%);
+    justify-content: space-between;
+}
+/* CHECK */
+.options-check {
+    /* USUWANIE BASICA */
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+    background-color: #fff;
+    /* Robienie customa */
+    width: 32px;
+    height: 32px;
+    border-radius: 3em;
+    display: grid;
+    place-content: center;
+}
+.options-check::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    transform: scale(0);
+    transform-origin: bottom left;
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em rgb(12,0,142);;
+    /* Windows High Contrast Mode */
+    background-color: CanvasText;
+}
+.options-check:checked::before {
+    transform: scale(1);
+}
+/* RADIO */
+.options-radio {
+    /* USUWANIE BASICA */
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+    background-color: #fff;
+    /* Robienie customa */
+    width: 32px;
+    height: 32px;
+    border-radius: 3em;
+    display: grid;
+    place-content: center;
+}
+.options-radio:before {
+    content: "";
+    width: 24px;
+    height: 24px;
+    transform: scale(0);
+    transform-origin: bottom left;
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em rgb(12,0,142);;
+    border-radius: 3em;
+    /* Windows High Contrast Mode */
+    background-color: CanvasText;
+}
+.options-radio:checked::before {
+    transform: scale(1);
+}
+
+.dragged-dad {
+    display: grid;
+    grid-template-columns: auto auto;
+    height: 200px;
+    justify-content: center; /* Wyśrodkowanie poziome */
+    position: relative;
+}
+
+.option-dad {
+    background-color: #fff;
+    border: 1px solid #5a5a5a;
+    width: 6em;
+    height: 3em;
+    border-radius: 12px;
+    justify-content: center;
+}
+.dropped-dad {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    width: 100%;
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: 1px 1px 10px 4px silver;
+    background-color: #fff;
+    margin-bottom: 10%;
+}
+.dropped {
+    display: flex;
+    margin: 0.2em;
+}
+.area-drop-dad {
+    width: 6em;
+    height: 3em;
+    border-radius: 12px;
+    margin-right: 0.5em;
+    border: 1px solid #5a5a5a;
+}
+.option-dad.dragging {
+    opacity: 0.5;
+    position: absolute;
+    z-index: 1000;
+}
+
 @font-face {
     font-family: Grotesk;
     src: url(../Space_Grotesk/SpaceGrotesk-VariableFont_wght.ttf);
