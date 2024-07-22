@@ -1,0 +1,9 @@
+{
+  "ignore": [ 
+    "./dist/",
+    "./node_modules/"
+  ],
+  "execMap": {
+    "ts": "ts-node --esm"
+  }
+}
