@@ -8,7 +8,7 @@ window.onload = function() {
 // Losowanie Liczb
 
 function RandomNumber() {
-    let randomizer = math.floor(math.random() * 9);
+    let randomizer = Math.floor(Math.random() * 9);
 
     console.log(randomizer)
 
@@ -21,7 +21,7 @@ function loadquestions(randomizer) {
     let usedquestions = [];
 
     while(task_num <= 4) {
-
+        RandomNumber()
         let desiredpanel = document.getElementById('task' + task_num)
 
 
@@ -68,8 +68,9 @@ function loadquestions(randomizer) {
                     </div>
                     <button class=next-btn onclick="next(), check${task_num}()"> Next </button>
                 `;
-                
-        }
+                break;
 
+        }
+        task_num++
     }
 }
