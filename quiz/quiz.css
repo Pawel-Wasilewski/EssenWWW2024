@@ -52,7 +52,6 @@ h1 {
 }
 .next-btn:hover {
     cursor: pointer;
-    scale: 101%;
 }
 .text-input {
     text-align: center;
@@ -185,6 +184,47 @@ input:focus {
 }
 .hidden {
     display: none;
+}
+.form-popup {
+    z-index: 10;
+}
+.form-area {
+    background-color: #0000005d;
+}
+.form-box {
+    background-color: #f3f3f3;
+    border-radius: 12px;
+    box-shadow: 1px 1px 10px 4px silver;
+}
+.input-arr {
+    justify-content: space-between;
+}
+.form-input {
+    text-align: center;
+    border: none;
+    min-width: 100%;
+    min-height: 48px;
+    box-shadow: 1px 1px 10px 4px silver;
+    margin-bottom: 70%;
+}
+.form-addnotation {
+    color: #5a5a5a;
+}
+.form-submit {
+    transition: 0.4s;
+    border: none;
+    font-size: 18px;
+    color: #e2e2e2;
+    min-width: 60%;
+    min-height: 48px;
+    box-shadow: 1px 1px 10px 4px silver;
+    background: rgb(12,0,142);
+    background: linear-gradient(90deg, rgba(12,0,142,1) 31%, rgba(29,0,255,1) 100%);
+}
+@media screen and (max-width: 500px ) {
+    .options-area {
+        width: 90%;
+    }
 }
 @font-face {
     font-family: Grotesk;
