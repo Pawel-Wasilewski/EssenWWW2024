@@ -1,15 +1,14 @@
 import { randomUUID, UUID } from "crypto";
 import EventEmitter from "events";
-import Player from "./player.js";
-
+import Player, { Answer } from "./player.js";
 
 type ChoiceQuestion = {
   answerType: 'multipleChoice' | 'singleChoice';
   question: string;
   customCountdown?: number;
   choiceAnswers: {
-    content: string;
     isCorrect: boolean;
+    content: string;
   }[]
 }
 
@@ -18,8 +17,8 @@ type DragAndDropQuestion = {
   question: string;
   customCountdown?: number;
   dragAndDropAnswers: {
-    content: string;
     isDraggable: boolean;
+    content: string;
   }[][];
 }
 
@@ -31,20 +30,22 @@ class Game extends EventEmitter
   public readonly gameID: UUID
   public readonly joinCode: string
   public readonly numberOfQuestions: number
+  public readonly questionsSetName: string
 
-  private readonly questions: Question[]
+  private readonly _questions: Question[]
   private _questionIndex = 0
   private _players: Player[] = []
   private _status: 'waitingRoom' | 'continues' | 'finished'
   private _isWaitingForResponse = false
   
-  public constructor(questions: Question[]) {
+  public constructor(questions: Question[], questionsSetName: string) {
     super()
 
     this.gameID = randomUUID() 
     this.joinCode = Game.getRandomJoinCode()
-    this.questions = questions
-    this.numberOfQuestions = this.questions.length
+    this._questions = questions
+    this.questionsSetName = questionsSetName
+    this.numberOfQuestions = this._questions.length
     this._status = 'waitingRoom'
 
     console.log(this.joinCode)
@@ -67,7 +68,7 @@ class Game extends EventEmitter
     this.on('countdownEnd', callback)
   }
 
-  public onResult(callback: (result: any) => void) {
+  public onResult(callback: () => void) {
     this.on('result', callback)
   }
 
@@ -141,7 +142,52 @@ class Game extends EventEmitter
 
   private verifyAnswers() {
     this.players.forEach((player) => {
-      // TODO 
+      const playerAnswer: Answer = player.answers[this.questionIndex]
+      const question = this.questions[this.questionIndex]
+
+      if (!playerAnswer) return;
+
+      switch (question.answerType) {
+        case 'singleChoice': {
+          if (playerAnswer.type !== question.answerType) return;
+
+          const pAnswer = playerAnswer.playerAnswer
+
+          const isCorrect = question.choiceAnswers
+            .filter((choiceAnswers) => choiceAnswers.isCorrect)
+            .every((answer) => answer.content === pAnswer)
+
+          playerAnswer.isCorrect = isCorrect
+          break;
+        }  
+          
+        case 'multipleChoice': {
+          if (playerAnswer.type !== question.answerType) return;
+          
+          const sortedPlayerAnswer = playerAnswer.playerAnswer.sort()
+
+          const isCorrect = question.choiceAnswers
+            .filter((choiceAnswers) => choiceAnswers.isCorrect)
+            .map((correctAnswer) => correctAnswer.content)
+            .sort()
+            .every((answer, index) => answer === sortedPlayerAnswer[index])
+
+          playerAnswer.isCorrect = isCorrect
+          break;
+        }
+
+        case 'dragAndDrop': {
+          if (playerAnswer.type !== question.answerType) return;
+
+          const isCorrect = question.dragAndDropAnswers.every((row, rowIndex) => row
+            .filter((node) => node.isDraggable)
+            .every((draggableNode, nodeIndex) => draggableNode.content === playerAnswer.playerAnswer[rowIndex][nodeIndex])
+          )
+
+          playerAnswer.isCorrect = isCorrect
+          break;
+        }
+      }
     })
   }
 
@@ -165,13 +211,21 @@ class Game extends EventEmitter
   public get isWaitingForResponse() {
     return this._isWaitingForResponse
   }
+
+  public get questions() {
+    return this._questions
+  }
   
   public get questionIndex() {
     return this._questionIndex
   }
   
-  private get players() {
+  public get players() {
     return this._players
+  }
+
+  public getPlayerByUsername(username: string) {
+    return this.players.find((player) => player.username === username)
   }
   
 

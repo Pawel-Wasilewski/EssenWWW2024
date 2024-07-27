@@ -1,16 +1,20 @@
 type SingleChoiceAnswer = {
-  // TODO
+  type: 'singleChoice';
+  playerAnswer: string; 
 }
-
 type MultiChoiceAnswer = {
-  // TODO
+  type: 'multipleChoice';
+  playerAnswer: string[]; 
 }
-
 type DragAndDropAnswer = {
-  // TODO
+  type: 'dragAndDrop';
+  playerAnswer: string[][];
 }
-
-type Answer = SingleChoiceAnswer | MultiChoiceAnswer | DragAndDropAnswer
+export type Answer = (SingleChoiceAnswer | MultiChoiceAnswer | DragAndDropAnswer) & {
+  questionIndex: number;
+  isCorrect?: boolean;
+  points?: number;
+} | undefined
 
 
 class Player {
@@ -19,6 +23,16 @@ class Player {
 
   public constructor(username: string) {
     this._username = username
+  }
+
+  public getPoints() {
+    let points = 0
+
+    this.answers.forEach((answer) => {
+      if (answer?.points) points += answer.points
+    })
+
+    return points
   }
 
   public get username() {

@@ -12,8 +12,10 @@ const APP_PORT       = Number(process.env.APP_PORT) || 80
 const SESSION_SECRET = process.env.SESSION_SECRET || (() => {
   throw new Error('SESSION_SECRET is not set!')
 })()
-const REDIS_CLIENT_PASSWORD = process.env.REDIS_CLIENT_SOCKET
+const REDIS_CLIENT_PASSWORD = process.env.REDIS_CLIENT_PASSWORD
 const REDIS_CLIENT_SOCKET   = Number(process.env.REDIS_CLIENT_SOCKET) || 6379
+
+
 
 const redisClient = redis.createClient({
   password: REDIS_CLIENT_PASSWORD,
@@ -22,7 +24,9 @@ const redisClient = redis.createClient({
   }
 })
 
-redisClient.connect().catch()
+redisClient.connect().catch((reason) => {
+  console.log("Can not connect to redis server", reason)
+})
 
 const api = express()
 
