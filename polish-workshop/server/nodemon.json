@@ -3,7 +3,6 @@
     "./dist/",
     "./node_modules/"
   ],
-  "execMap": {
-    "ts": "ts-node --esm"
-  }
+  "exec": "cls && npx tsc && node .",
+  "ext": "js,mjs,ts,json,env"
 }

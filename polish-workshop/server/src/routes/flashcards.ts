@@ -1,9 +1,9 @@
 import { Router } from "express";
 
 function flashcards() {
-  const api = Router()
+    const api = Router();
 
-  return api
+    return api;
 }
 
-export default flashcards
+export default flashcards;

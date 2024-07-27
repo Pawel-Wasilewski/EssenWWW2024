@@ -1,19 +1,19 @@
 import { Router } from "express";
-import { 
-  getGameData,
-  getGameDataWithJoinCode
-} from "../controllers/quizController.js";
+import { getGameData, getGameEventsStream, joinPlayer } from "../controllers/quizController.js";
+import { requestGameData } from "../middlewares/requestGameData.js";
 
 function quiz() {
-  const api = Router()
+  const api = Router();
 
-  api.get('/game', getGameData)
+  api.get('/status', requestGameData(), getGameData)
+  api.get('/status/:joinCode', requestGameData(), getGameData)
+  api.get('/game-event-stream/:joinCode', requestGameData({
+    strictDataIntegrityControl: true
+  }), getGameEventsStream)
+  api.post('/join/:joinCode', requestGameData(), joinPlayer)
+  api.post('/answer/:joinCode', requestGameData())
 
-  api.get('/game/:joinCode', getGameDataWithJoinCode)
-
-  api.get('/stream/:joinCode')
-
-  return api
+  return api;
 }
 
-export default quiz
+export default quiz;
